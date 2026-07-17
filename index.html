@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WooGWay（ウーグウェイ）| Aaruya Woogway Solutions Pvt Ltd</title>
+<style>
+  :root{
+    --saffron:#FF9933;
+    --saffron-deep:#E8792A;
+    --green:#138808;
+    --green-deep:#0E6B06;
+    --navy:#0B1F6B;
+    --ink:#24262B;
+    --ink-soft:#5B5F68;
+    --line:#ECEBE6;
+    --paper:#FFFFFF;
+    --paper-tint:#FFFBF5;
+    --paper-tint-green:#F5FAF4;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .flag-bar{
+    height:5px;
+    width:100%;
+    background:linear-gradient(90deg,var(--saffron) 0%,var(--saffron) 33.3%,#ffffff 33.3%,#ffffff 66.6%,var(--green) 66.6%,var(--green) 100%);
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+
+  /* NAV */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1080px;margin:0 auto;padding:16px 28px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:14.5px;letter-spacing:0.01em;color:var(--ink);text-decoration:none;line-height:1.3;max-width:300px;}
+  .chakra{
+    width:20px;height:20px;border-radius:50%;
+    border:2px solid var(--navy);
+    position:relative;flex-shrink:0;
+  }
+  .chakra::before{
+    content:"";position:absolute;inset:5px;border-radius:50%;background:var(--navy);
+  }
+  nav.links{display:flex;gap:28px;font-size:14.5px;}
+  nav.links a{text-decoration:none;color:var(--ink-soft);font-weight:500;transition:color .2s;}
+  nav.links a:hover{color:var(--saffron-deep);}
+  .nav-toggle{display:none;}
+
+  /* HERO */
+  .hero{
+    padding:96px 0 80px;
+    text-align:center;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255,153,51,0.07), transparent 40%),
+      radial-gradient(circle at 85% 30%, rgba(19,136,8,0.06), transparent 40%);
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.12em;font-weight:700;color:var(--saffron-deep);
+    background:#FFF3E6;border:1px solid #FFE1BD;padding:7px 16px;border-radius:999px;
+    margin-bottom:28px;
+  }
+  .hero h1{
+    font-size:42px;line-height:1.5;margin:0 0 22px;font-weight:800;letter-spacing:.01em;
+  }
+  .hero h1 .accent{
+    background:linear-gradient(90deg,var(--saffron-deep),var(--green-deep));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lead{
+    font-size:17px;color:var(--ink-soft);max-width:660px;margin:0 auto 40px;
+    text-wrap:balance;
+  }
+  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:14px 30px;border-radius:999px;font-weight:700;font-size:14.5px;
+    text-decoration:none;transition:transform .15s, box-shadow .15s;
+  }
+  .btn-primary{background:var(--navy);color:#fff;box-shadow:0 8px 20px rgba(11,31,107,0.18);}
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{border:1.5px solid var(--line);color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--saffron);color:var(--saffron-deep);}
+
+  /* SECTION generic */
+  section{padding:88px 0;}
+  .section-tint{background:var(--paper-tint);}
+  .section-tint-green{background:var(--paper-tint-green);}
+  .kicker{
+    font-size:13px;font-weight:800;letter-spacing:.14em;color:var(--green-deep);
+    text-transform:uppercase;margin-bottom:14px;display:block;
+  }
+  .kicker.orange{color:var(--saffron-deep);}
+  h2.section-title{font-size:30px;font-weight:800;margin:0 0 18px;letter-spacing:.01em;}
+  .section-head{max-width:680px;margin-bottom:52px;}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  p.section-desc{color:var(--ink-soft);font-size:16px;margin:0;}
+
+  /* PHILOSOPHY */
+  .philosophy{
+    text-align:center;
+    padding:100px 0;
+    position:relative;
+  }
+  .philosophy blockquote{
+    font-size:28px;font-weight:800;line-height:1.9;margin:0 auto 30px;max-width:760px;color:var(--ink);
+  }
+  .philosophy blockquote .em{color:var(--saffron-deep);}
+  .philosophy blockquote .em2{color:var(--green-deep);}
+  .philosophy .sub{max-width:640px;margin:0 auto;color:var(--ink-soft);font-size:15.5px;}
+  .mini-flag{
+    width:44px;height:6px;border-radius:3px;margin:0 auto 34px;
+    background:linear-gradient(90deg,var(--saffron) 0 33%, #fff 33% 66%, var(--green) 66% 100%);
+    border:1px solid var(--line);
+  }
+
+  /* COMPANY OVERVIEW */
+  .overview-grid{
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:start;
+  }
+  .info-table{width:100%;border-collapse:collapse;font-size:15px;}
+  .info-table tr{border-bottom:1px solid var(--line);}
+  .info-table tr:last-child{border-bottom:none;}
+  .info-table th{
+    text-align:left;padding:16px 16px 16px 0;width:130px;color:var(--ink-soft);font-weight:700;font-size:13.5px;
+    vertical-align:top;letter-spacing:.02em;
+  }
+  .info-table td{padding:16px 0;vertical-align:top;}
+  .info-table a{color:var(--green-deep);text-decoration:underline;text-underline-offset:3px;}
+  .ceo-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px;box-shadow:0 10px 30px rgba(20,20,40,0.04);
+  }
+  .ceo-card img{width:96px;height:96px;border-radius:50%;object-fit:cover;margin-bottom:16px;border:3px solid var(--paper-tint);}
+  .ceo-card .name{font-weight:800;font-size:17px;margin-bottom:2px;}
+  .ceo-card .role{font-size:13px;color:var(--saffron-deep);font-weight:700;margin-bottom:14px;}
+  .ceo-card .bio{font-size:13.8px;color:var(--ink-soft);line-height:1.85;}
+  .ceo-card .bio p{margin:0 0 10px;}
+
+  /* BUSINESS SECTIONS */
+  .biz-block{padding:90px 0;border-top:1px solid var(--line);}
+  .biz-number{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:38px;height:38px;border-radius:10px;font-weight:800;font-size:15px;color:#fff;margin-bottom:22px;
+  }
+  .biz-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .biz-grid.reverse .biz-text{order:2;}
+  .biz-grid.reverse .biz-media{order:1;}
+  .biz-text h3{font-size:26px;font-weight:800;margin:0 0 16px;}
+  .biz-text p{color:var(--ink-soft);font-size:15.5px;margin:0 0 16px;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 4px;}
+  .tag{
+    font-size:12.5px;font-weight:700;padding:7px 14px;border-radius:999px;
+    background:var(--paper-tint);border:1px solid #FFE1BD;color:var(--saffron-deep);
+  }
+  .tag.green{background:var(--paper-tint-green);border-color:#CFE9CC;color:var(--green-deep);}
+  .callout{
+    margin-top:22px;padding:18px 20px;border-radius:14px;background:var(--paper-tint-green);
+    border:1px solid #CFE9CC;font-size:14.3px;color:#1c4a17;
+  }
+  .callout b{color:var(--green-deep);}
+  .callout.saffron{background:var(--paper-tint);border-color:#FFE1BD;color:#7a3f0d;}
+  .callout.saffron b{color:var(--saffron-deep);}
+
+  .media-single img{border-radius:var(--radius);box-shadow:0 20px 45px rgba(20,20,40,0.10);}
+  .media-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .media-grid img{border-radius:14px;box-shadow:0 14px 30px rgba(20,20,40,0.08);height:100%;object-fit:cover;}
+  .media-grid .span-2{grid-column:1/3;}
+  .illustration{
+    border-radius:14px;box-shadow:0 14px 30px rgba(20,20,40,0.08);overflow:hidden;
+    background:linear-gradient(135deg,#FFF6EA 0%,#F3FAF2 100%);
+    display:flex;align-items:center;justify-content:center;padding:18px 0;
+  }
+  .illustration svg{width:100%;height:auto;display:block;}
+
+  .team-card{
+    display:flex;gap:14px;align-items:flex-start;background:var(--paper);
+    border:1px solid var(--line);border-radius:14px;padding:16px 18px;
+    box-shadow:0 6px 16px rgba(20,20,40,0.05);
+  }
+  .team-card img{width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0;}
+  .team-card .tc-name{font-weight:800;font-size:14px;margin-bottom:4px;white-space:nowrap;}
+  .team-card .tc-bio{font-size:12.8px;color:var(--ink-soft);line-height:1.75;word-break:keep-all;overflow-wrap:anywhere;}
+
+  .stat-row{display:flex;gap:28px;margin-top:26px;flex-wrap:wrap;}
+  .stat{min-width:100px;}
+  .stat .num{font-size:24px;font-weight:800;color:var(--navy);}
+  .stat .label{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+
+  .reason-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;}
+  .reason{
+    background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px;
+  }
+  .reason .rn{font-size:12px;font-weight:800;color:var(--saffron-deep);margin-bottom:6px;letter-spacing:.05em;}
+  .reason p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+  .reason strong{color:var(--ink);}
+
+  /* Special-skilled note box */
+  .note-box{
+    display:flex;gap:14px;align-items:flex-start;margin-top:22px;padding:18px 20px;
+    background:#F4F6FF;border:1px solid #D9DEFA;border-radius:14px;
+  }
+  .note-box .dot{width:8px;height:8px;border-radius:50%;background:var(--navy);margin-top:7px;flex-shrink:0;}
+  .note-box p{margin:0;font-size:14px;color:#26305e;}
+
+  /* Mission block final */
+  .mission-final{
+    text-align:center;background:var(--navy);color:#fff;padding:90px 0;
+  }
+  .mission-final .kicker{color:#FFC98A;}
+  .mission-final h2{font-size:28px;font-weight:800;max-width:700px;margin:0 auto 20px;line-height:1.8;}
+  .mission-final p{color:#C9D1F0;max-width:600px;margin:0 auto;font-size:15px;}
+
+  /* FOOTER */
+  footer{padding:56px 0 40px;background:var(--paper);}
+  .footer-inner{
+    display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px;
+    border-top:1px solid var(--line);padding-top:36px;
+  }
+  .footer-brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16px;}
+  .footer-meta{font-size:13px;color:var(--ink-soft);line-height:1.9;}
+  .footer-meta a{color:var(--green-deep);text-decoration:underline;}
+
+  @media (max-width:860px){
+    nav.links{display:none;}
+    .hero h1{font-size:30px;}
+    .overview-grid{grid-template-columns:1fr;}
+    .biz-grid, .biz-grid.reverse{grid-template-columns:1fr;}
+    .biz-grid .biz-text, .biz-grid.reverse .biz-text{order:1;}
+    .biz-grid .biz-media, .biz-grid.reverse .biz-media{order:2;}
+    .reason-list{grid-template-columns:1fr;}
+    .media-grid{grid-template-columns:1fr 1fr;}
+    .philosophy blockquote{font-size:22px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="flag-bar"></div>
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand"><span class="chakra"></span>Aaruya Woogway Solutions<br>Pvt Ltd</a>
+    <nav class="links">
+      <a href="#philosophy">我々の想い</a>
+      <a href="#overview">会社概要</a>
+      <a href="#jp-edu">日本語教育</a>
+      <a href="#recruit">人材紹介</a>
+      <a href="#offshore">オフショア開発</a>
+      <a href="#india-market">インド市場進出支援</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">🇮🇳 INDIA × JAPAN 🇯🇵</span>
+      <h1>日本とインドをつなぐ、<br><span class="accent">架け橋</span>という仕事。</h1>
+      <p class="lead">Aaruya Woogway Solutions Pvt Ltdは、日本語教育・人材紹介・オフショア開発・インド市場進出支援を通じて、日本とインド、両国の豊かな未来をつくります。</p>
+      <div class="hero-cta">
+        <a href="#overview" class="btn btn-primary">会社概要を見る</a>
+        <a href="#jp-edu" class="btn btn-ghost">事業内容を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section id="philosophy" class="philosophy section-tint">
+    <div class="wrap">
+      <div class="mini-flag"></div>
+      <span class="kicker orange" style="display:block;text-align:center;">OUR THOUGHTS / 我々の想い</span>
+      <blockquote>我々が<span class="em">日本</span>と<span class="em2">インド</span>の架け橋となり、<br>両国が豊かで、互恵関係を保てるよう寄与する。</blockquote>
+      <p class="sub">私たちは、教育・人材・技術という3つの領域から日本とインドの間に橋を架け、双方の企業・人材・社会にとって価値のあるパートナーシップを築いていきます。</p>
+    </div>
+  </section>
+
+  <!-- COMPANY OVERVIEW -->
+  <section id="overview">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">OVERVIEW / 会社概要</span>
+        <h2 class="section-title">会社概要</h2>
+        <p class="section-desc">WooGWay株式会社（日本・2010年設立）のインドグループ会社として、現地に根差した事業を展開しています。</p>
+      </div>
+
+      <div class="overview-grid">
+        <table class="info-table">
+          <tr>
+            <th>社名</th>
+            <td>Aaruya Woogway Solutions Pvt Ltd<br><span style="color:var(--ink-soft);font-size:13.5px;">（旧：MIRAI GLOBAL SOFTWARE PRIVATE LIMITED）</span></td>
+          </tr>
+          <tr>
+            <th>登記名称</th>
+            <td>AARUYA WOOGWAY PRIVATE LIMITED</td>
+          </tr>
+          <tr>
+            <th>設立年度</th>
+            <td>2013年</td>
+          </tr>
+          <tr>
+            <th>取締役</th>
+            <td>Tomonori Sekiguchi<br>Abhijit Ghanekar<br>Priyanka Ghanekar</td>
+          </tr>
+          <tr>
+            <th>グループ本社</th>
+            <td>WooGWay株式会社（日本・2010年設立）</td>
+          </tr>
+          <tr>
+            <th>Webサイト</th>
+            <td><a href="https://aaruya-woogway-hp.vercel.app/" target="_blank" rel="noopener">aaruya-woogway-hp.vercel.app</a></td>
+          </tr>
+        </table>
+
+        <div class="ceo-card">
+          <img src="assets/ceo-photo.jpg" alt="関口友則 代表取締役社長">
+          <div class="name">関口 友則</div>
+          <div class="role">代表取締役社長</div>
+          <div class="bio">
+            <p>2001年、アクセンチュアに入社。通信・ハイテクやメディアなど幅広い業界の業務改革・IT導入に従事。海外駐在を通じて日本と海外の橋渡し役を担う。</p>
+            <p>2010年、WooGWay株式会社 代表取締役社長に就任。インド・ナイジェリアにグループ会社を設立。</p>
+            <p style="margin-top:22px;">成蹊大学経済学部卒、米国Goldey-Beacom大学MBA取得。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUSINESS INTRO -->
+  <section class="section-tint-green" style="padding:70px 0;">
+    <div class="wrap section-head center">
+      <span class="kicker">BUSINESS / 主な事業</span>
+      <h2 class="section-title" style="margin-bottom:0;">4つの事業で、日本とインドをつなぐ</h2>
+    </div>
+  </section>
+
+  <!-- 1. 日本語教育 -->
+  <div class="biz-block" id="jp-edu">
+    <div class="wrap">
+      <div class="biz-grid">
+        <div class="biz-text">
+          <div class="biz-number" style="background:var(--saffron-deep);">01</div>
+          <h3>日本語教育</h3>
+          <p>インド現地の大学と提携し、JLPT（日本語能力試験）に準拠したカリキュラムで、意欲あるインドの若者に日本語教育を提供しています。教育から採用、就業後の定着支援までを一気通貫でサポートします。</p>
+          <p>看護系大学やIT系大学など、複数の提携大学から人材を輩出しており、IT分野に限らず幅広い業界のニーズにお応えできる教育体制を整えています。</p>
+          <div class="callout saffron"><b>導入実績</b>：株式会社NISSO様（東京証券取引所プライム市場）と提携し、インド人材の日本語教育〜人材紹介までを一貫して実施。</div>
+          <div class="stat-row">
+            <div class="stat"><div class="num">約9億人</div><div class="label">35歳未満のインド人口</div></div>
+            <div class="stat"><div class="num">約28歳</div><div class="label">インドの平均年齢</div></div>
+          </div>
+        </div>
+        <div class="biz-media">
+          <div class="media-grid">
+            <img class="span-2" src="assets/jp-edu-hero.jpg" alt="インドの大学での日本語教育セミナーの様子">
+            <img src="assets/jp-edu-classroom.jpg" alt="日本語教育クラスの様子">
+            <img src="assets/jp-edu-lecture.jpg" alt="現地大学での講演の様子">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 人材紹介 -->
+  <div class="biz-block section-tint" id="recruit">
+    <div class="wrap">
+      <div class="biz-grid reverse">
+        <div class="biz-media">
+          <div class="media-grid">
+            <img class="span-2" src="assets/recruit-collage.jpg" alt="インド国内での人材紹介セミナーの様子">
+            <img class="span-2" src="assets/itjobsjapan-mock.jpg" alt="人材紹介サービス IT Jobs Japan">
+          </div>
+        </div>
+        <div class="biz-text">
+          <div class="biz-number" style="background:var(--green-deep);">02</div>
+          <h3>人材紹介</h3>
+          <p>10,000名を超えるインド人ITエンジニアのデータベースを活かし、正社員紹介サービス「IT Jobs Japan（IJJ）」を中心に、御社に最適な人材をご紹介します。経験者エンジニアの即戦力採用から、新卒トップ校人材の育成採用まで、柔軟な形態でご利用いただけます。</p>
+          <div class="note-box">
+            <div class="dot"></div>
+            <p>IT人材だけでなく、<b>看護分野をはじめとする「特定技能」人材</b>のご紹介にも対応しています。IT・介護・医療など、幅広い分野で日本とインドの人材をつなぎます。</p>
+          </div>
+          <div class="tag-row">
+            <span class="tag green">経験者エンジニア紹介</span>
+            <span class="tag green">新卒育成採用</span>
+            <span class="tag green">特定技能人材（看護 等）</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. オフショア開発 -->
+  <div class="biz-block" id="offshore">
+    <div class="wrap">
+      <div class="biz-grid">
+        <div class="biz-text">
+          <div class="biz-number" style="background:var(--navy);">03</div>
+          <h3>オフショア開発</h3>
+          <p>インドの現地法人ネットワークを活かし、1万人以上のインド人エンジニアによるラボ型・請負型のオフショア開発を提供します。Web・アプリ開発から、ブロックチェーン・AIといった最先端技術まで幅広く対応可能です。</p>
+          <p>英語でのコミュニケーションに不安のあるお客様には、日本の商習慣を熟知したバイリンガルの「ブリッジSE」がチームに伴走し、納期管理まで含めて安心してご利用いただけます。</p>
+          <div class="reason-list">
+            <div class="reason"><div class="rn">STRENGTH 01</div><p><strong>圧倒的な人材数とスキル</strong><br>最先端技術にも対応する厚い人材層</p></div>
+            <div class="reason"><div class="rn">STRENGTH 02</div><p><strong>コストパフォーマンス</strong><br>月額30〜50万円程度が目安（国内水準の6〜8割）</p></div>
+            <div class="reason"><div class="rn">STRENGTH 03</div><p><strong>納期管理</strong><br>日本人メンバー・ブリッジSEが進行管理を担当</p></div>
+            <div class="reason"><div class="rn">STRENGTH 04</div><p><strong>コミュニケーション支援</strong><br>日本語対応可能な人材もあわせてご紹介</p></div>
+          </div>
+        </div>
+        <div class="biz-media">
+          <div class="media-grid">
+            <img class="span-2" src="assets/offshore-team-photo.jpg" alt="日本とインドをつなぐリモート開発チームのイメージ">
+            <div class="team-card span-2">
+              <img src="assets/bse-abhijit.jpg" alt="Abhijit Ghanekar">
+              <div>
+                <div class="tc-name">Abhijit Ghanekar</div>
+                <div class="tc-bio">プネ大学を卒業し、ITエンジニアとしてインドで就職したのち、日本のNTT DATAに入社し、日本に5年間住んでおりました。日本の商習慣も熟知したブリッジSEのチームリーダーとして日本企業の支援を実施しております。</div>
+              </div>
+            </div>
+            <div class="team-card span-2">
+              <img src="assets/bse-shambhavi.jpg" alt="Shambhavi Dhawade">
+              <div>
+                <div class="tc-name">Shambhavi Dhawade</div>
+                <div class="tc-bio">プネ大学を卒業し、2019年から日本に在住している。学生時代はプログラミングの勉強をしており、現在はバイリンガルのブリッジSEとして活躍しています。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. インド市場進出支援 -->
+  <div class="biz-block section-tint-green" id="india-market">
+    <div class="wrap">
+      <div class="biz-grid reverse">
+        <div class="biz-media">
+          <div class="media-grid">
+            <img src="assets/bcg-package.jpg" alt="Breast Care Glove パッケージ">
+            <img src="assets/bcg-hand.jpg" alt="Breast Care Glove 使用イメージ">
+            <img class="span-2" src="assets/icst-seminar1.jpg" alt="デリーでの乳がん啓発セミナーの様子">
+          </div>
+        </div>
+        <div class="biz-text">
+          <div class="biz-number" style="background:var(--saffron-deep);">04</div>
+          <h3>インド市場進出支援</h3>
+          <p>日本企業のインド市場進出を、現地パートナーとして支援しています。現在、日本のICST社が開発した乳がん自己触診用グローブ「Breast Care Glove」のインド市場でのマーケティングプロジェクトを推進中です。</p>
+          <div class="callout"><b>私たちの想い</b>：インドは乳がんの罹患数こそ世界3位（年間約19万人）ですが、死亡者数は世界で最も多い年間約9.8万人にのぼります（GLOBOCAN 2022年データ）。罹患数に対して死亡数が突出して多いのは、早期発見の遅れが大きな要因とされています。日本で15年以上・累計約170万個の販売実績を持つこの技術を通じて、一人でも多くの女性の早期発見・早期治療につなげたい。それが、このプロジェクトにかける私たちの願いです。</div>
+          <div class="stat-row">
+            <div class="stat"><div class="num">世界1位</div><div class="label">乳がんによる死亡者数（年間約9.8万人）</div></div>
+            <div class="stat"><div class="num">15年+</div><div class="label">日本・国際市場での実績</div></div>
+            <div class="stat"><div class="num">約170万個</div><div class="label">累計販売実績</div></div>
+          </div>
+          <p style="font-size:12px;color:var(--ink-soft);margin-top:10px;">出典：World Cancer Research Fund「Breast cancer statistics」（GLOBOCAN 2022データに基づく）</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL MISSION -->
+  <section class="mission-final">
+    <div class="wrap">
+      <span class="kicker">MISSION</span>
+      <h2>我々が架け橋となりお客様を成功へ導くため、<br>血の通った真のパートナー・企業人となる。</h2>
+      <p>日本語教育、人材紹介、オフショア開発、インド市場進出支援。4つの事業を通じて、これからも日本とインドの間に、確かな価値を届けていきます。</p>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-meta" style="margin-top:0;font-size:14px;font-weight:700;color:var(--ink);">Aaruya Woogway Solutions Pvt Ltd<br><span style="font-weight:400;color:var(--ink-soft);font-size:13px;">（旧：MIRAI GLOBAL SOFTWARE PRIVATE LIMITED）</span></p>
+      </div>
+      <div class="footer-meta">
+        <div>グループ本社：WooGWay株式会社（日本）</div>
+        <div>Web：<a href="https://woogway.com/" target="_blank" rel="noopener">WooGWay</a></div>
+        <div>お問い合わせ：<a href="mailto:contact@woogway.com">contact@woogway.com</a></div>
+        <div style="margin-top:10px;color:#9a9da5;">© WooGWay Group. All Rights Reserved.</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
