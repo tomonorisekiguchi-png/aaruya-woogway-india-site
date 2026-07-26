@@ -58,9 +58,10 @@
   .chakra::before{
     content:"";position:absolute;inset:5px;border-radius:50%;background:var(--navy);
   }
-  nav.links{display:flex;gap:28px;font-size:14.5px;}
+  nav.links{display:flex;gap:28px;font-size:14.5px;align-items:center;}
   nav.links a{text-decoration:none;color:var(--ink-soft);font-weight:500;transition:color .2s;}
   nav.links a:hover{color:var(--saffron-deep);}
+  nav.links a.lang-switch{font-weight:800;color:var(--navy);}
   .nav-toggle{display:none;}
 
   /* HERO */
@@ -264,6 +265,7 @@
       <a href="#offshore">オフショア開発</a>
       <a href="#india-market">インド市場進出支援</a>
       <a href="#contact">お問い合わせ</a>
+      <a href="en/index.html" class="lang-switch">EN</a>
     </nav>
   </div>
 </header>
