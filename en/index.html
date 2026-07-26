@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WooGWay | Aaruya Woogway Solutions Pvt Ltd</title>
+<style>
+  :root{
+    --saffron:#FF9933;
+    --saffron-deep:#E8792A;
+    --green:#138808;
+    --green-deep:#0E6B06;
+    --navy:#0B1F6B;
+    --ink:#24262B;
+    --ink-soft:#5B5F68;
+    --line:#ECEBE6;
+    --paper:#FFFFFF;
+    --paper-tint:#FFFBF5;
+    --paper-tint-green:#F5FAF4;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .flag-bar{
+    height:5px;
+    width:100%;
+    background:linear-gradient(90deg,var(--saffron) 0%,var(--saffron) 33.3%,#ffffff 33.3%,#ffffff 66.6%,var(--green) 66.6%,var(--green) 100%);
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+
+  /* NAV */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1080px;margin:0 auto;padding:16px 28px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:14.5px;letter-spacing:0.01em;color:var(--ink);text-decoration:none;line-height:1.3;max-width:300px;}
+  .chakra{
+    width:20px;height:20px;border-radius:50%;
+    border:2px solid var(--navy);
+    position:relative;flex-shrink:0;
+  }
+  .chakra::before{
+    content:"";position:absolute;inset:5px;border-radius:50%;background:var(--navy);
+  }
+  nav.links{display:flex;gap:28px;font-size:14.5px;align-items:center;}
+  nav.links a{text-decoration:none;color:var(--ink-soft);font-weight:500;transition:color .2s;}
+  nav.links a:hover{color:var(--saffron-deep);}
+  nav.links a.lang-switch{font-weight:800;color:var(--navy);}
+  .nav-toggle{display:none;}
+
+  /* HERO */
+  .hero{
+    padding:96px 0 80px;
+    text-align:center;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255,153,51,0.07), transparent 40%),
+      radial-gradient(circle at 85% 30%, rgba(19,136,8,0.06), transparent 40%);
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.12em;font-weight:700;color:var(--saffron-deep);
+    background:#FFF3E6;border:1px solid #FFE1BD;padding:7px 16px;border-radius:999px;
+    margin-bottom:28px;
+  }
+  .hero h1{
+    font-size:42px;line-height:1.5;margin:0 0 22px;font-weight:800;letter-spacing:.01em;
+  }
+  .hero h1 .accent{
+    background:linear-gradient(90deg,var(--saffron-deep),var(--green-deep));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lead{
+    font-size:17px;color:var(--ink-soft);max-width:660px;margin:0 auto 40px;
+    text-wrap:balance;
+  }
+  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:14px 30px;border-radius:999px;font-weight:700;font-size:14.5px;
+    text-decoration:none;transition:transform .15s, box-shadow .15s;
+  }
+  .btn-primary{background:var(--navy);color:#fff;box-shadow:0 8px 20px rgba(11,31,107,0.18);}
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{border:1.5px solid var(--line);color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--saffron);color:var(--saffron-deep);}
+
+  /* SECTION generic */
+  section{padding:88px 0;}
+  .section-tint{background:var(--paper-tint);}
+  .section-tint-green{background:var(--paper-tint-green);}
+  .kicker{
+    font-size:13px;font-weight:800;letter-spacing:.14em;color:var(--green-deep);
+    text-transform:uppercase;margin-bottom:14px;display:block;
+  }
+  .kicker.orange{color:var(--saffron-deep);}
+  h2.section-title{font-size:30px;font-weight:800;margin:0 0 18px;letter-spacing:.01em;}
+  .section-head{max-width:680px;margin-bottom:52px;}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  p.section-desc{color:var(--ink-soft);font-size:16px;margin:0;}
+
+  /* PHILOSOPHY */
+  .philosophy{
+    text-align:center;
+    padding:100px 0;
+    position:relative;
+  }
+  .philosophy blockquote{
+    font-size:28px;font-weight:800;line-height:1.9;margin:0 auto 30px;max-width:760px;color:var(--ink);
+  }
+  .philosophy blockquote .em{color:var(--saffron-deep);}
+  .philosophy blockquote .em2{color:var(--green-deep);}
+  .philosophy .sub{max-width:640px;margin:0 auto;color:var(--ink-soft);font-size:15.5px;}
+  .mini-flag{
+    width:44px;height:6px;border-radius:3px;margin:0 auto 34px;
+    background:linear-gradient(90deg,var(--saffron) 0 33%, #fff 33% 66%, var(--green) 66% 100%);
+    border:1px solid var(--line);
+  }
+
+  /* COMPANY OVERVIEW */
+  .overview-grid{
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:start;
+  }
+  .info-table{width:100%;border-collapse:collapse;font-size:15px;}
+  .info-table tr{border-bottom:1px solid var(--line);}
+  .info-table tr:last-child{border-bottom:none;}
+  .info-table th{
+    text-align:left;padding:16px 16px 16px 0;width:150px;color:var(--ink-soft);font-weight:700;font-size:13.5px;
+    vertical-align:top;letter-spacing:.02em;
+  }
+  .info-table td{padding:16px 0;vertical-align:top;}
+  .info-table a{color:var(--green-deep);text-decoration:underline;text-underline-offset:3px;}
+  .ceo-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px;box-shadow:0 10px 30px rgba(20,20,40,0.04);
+  }
+  .ceo-card img{width:96px;height:96px;border-radius:50%;object-fit:cover;margin-bottom:16px;border:3px solid var(--paper-tint);}
+  .ceo-card .name{font-weight:800;font-size:17px;margin-bottom:2px;}
+  .ceo-card .role{font-size:13px;color:var(--saffron-deep);font-weight:700;margin-bottom:14px;}
+  .ceo-card .bio{font-size:13.8px;color:var(--ink-soft);line-height:1.85;}
+  .ceo-card .bio p{margin:0 0 10px;}
+
+  /* BUSINESS SECTIONS */
+  .biz-block{padding:90px 0;border-top:1px solid var(--line);}
+  .biz-number{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:38px;height:38px;border-radius:10px;font-weight:800;font-size:15px;color:#fff;margin-bottom:22px;
+  }
+  .biz-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .biz-grid.reverse .biz-text{order:2;}
+  .biz-grid.reverse .biz-media{order:1;}
+  .biz-text h3{font-size:26px;font-weight:800;margin:0 0 16px;}
+  .biz-text p{color:var(--ink-soft);font-size:15.5px;margin:0 0 16px;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 4px;}
+  .tag{
+    font-size:12.5px;font-weight:700;padding:7px 14px;border-radius:999px;
+    background:var(--paper-tint);border:1px solid #FFE1BD;color:var(--saffron-deep);
+  }
+  .tag.green{background:var(--paper-tint-green);border-color:#CFE9CC;color:var(--green-deep);}
+  .callout{
+    margin-top:22px;padding:18px 20px;border-radius:14px;background:var(--paper-tint-green);
+    border:1px solid #CFE9CC;font-size:14.3px;color:#1c4a17;
+  }
+  .callout b{color:var(--green-deep);}
+  .callout.saffron{background:var(--paper-tint);border-color:#FFE1BD;color:#7a3f0d;}
+  .callout.saffron b{color:var(--saffron-deep);}
+
+  .media-single img{border-radius:var(--radius);box-shadow:0 20px 45px rgba(20,20,40,0.10);}
+  .media-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .media-grid img{border-radius:14px;box-shadow:0 14px 30px rgba(20,20,40,0.08);height:100%;object-fit:cover;}
+  .media-grid .span-2{grid-column:1/3;}
+  .illustration{
+    border-radius:14px;box-shadow:0 14px 30px rgba(20,20,40,0.08);overflow:hidden;
+    background:linear-gradient(135deg,#FFF6EA 0%,#F3FAF2 100%);
+    display:flex;align-items:center;justify-content:center;padding:18px 0;
+  }
+  .illustration svg{width:100%;height:auto;display:block;}
+
+  .team-card{
+    display:flex;gap:14px;align-items:flex-start;background:var(--paper);
+    border:1px solid var(--line);border-radius:14px;padding:16px 18px;
+    box-shadow:0 6px 16px rgba(20,20,40,0.05);
+  }
+  .team-card img{width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0;}
+  .team-card .tc-name{font-weight:800;font-size:14px;margin-bottom:4px;white-space:nowrap;}
+  .team-card .tc-bio{font-size:12.8px;color:var(--ink-soft);line-height:1.75;word-break:keep-all;overflow-wrap:anywhere;}
+
+  .stat-row{display:flex;gap:28px;margin-top:26px;flex-wrap:wrap;}
+  .stat{min-width:100px;}
+  .stat .num{font-size:24px;font-weight:800;color:var(--navy);}
+  .stat .label{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+
+  .reason-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;}
+  .reason{
+    background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px;
+  }
+  .reason .rn{font-size:12px;font-weight:800;color:var(--saffron-deep);margin-bottom:6px;letter-spacing:.05em;}
+  .reason p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+  .reason strong{color:var(--ink);}
+
+  /* Special-skilled note box */
+  .note-box{
+    display:flex;gap:14px;align-items:flex-start;margin-top:22px;padding:18px 20px;
+    background:#F4F6FF;border:1px solid #D9DEFA;border-radius:14px;
+  }
+  .note-box .dot{width:8px;height:8px;border-radius:50%;background:var(--navy);margin-top:7px;flex-shrink:0;}
+  .note-box p{margin:0;font-size:14px;color:#26305e;}
+
+  /* Mission block final */
+  .mission-final{
+    text-align:center;background:var(--navy);color:#fff;padding:90px 0;
+  }
+  .mission-final .kicker{color:#FFC98A;}
+  .mission-final h2{font-size:28px;font-weight:800;max-width:700px;margin:0 auto 20px;line-height:1.8;}
+  .mission-final p{color:#C9D1F0;max-width:600px;margin:0 auto;font-size:15px;}
+
+  /* FOOTER */
+  footer{padding:56px 0 40px;background:var(--paper);}
+  .footer-inner{
+    display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px;
+    border-top:1px solid var(--line);padding-top:36px;
+  }
+  .footer-brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16px;}
+  .footer-meta{font-size:13px;color:var(--ink-soft);line-height:1.9;}
+  .footer-meta a{color:var(--green-deep);text-decoration:underline;}
+
+  @media (max-width:860px){
+    nav.links{display:none;}
+    .hero h1{font-size:30px;}
+    .overview-grid{grid-template-columns:1fr;}
+    .biz-grid, .biz-grid.reverse{grid-template-columns:1fr;}
+    .biz-grid .biz-text, .biz-grid.reverse .biz-text{order:1;}
+    .biz-grid .biz-media, .biz-grid.reverse .biz-media{order:2;}
+    .reason-list{grid-template-columns:1fr;}
+    .media-grid{grid-template-columns:1fr 1fr;}
+    .philosophy blockquote{font-size:22px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="flag-bar"></div>
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand"><span class="chakra"></span>Aaruya Woogway Solutions<br>Pvt Ltd</a>
+    <nav class="links">
+      <a href="#philosophy">Our Thoughts</a>
+      <a href="#overview">Company Overview</a>
+      <a href="#jp-edu">Japanese Education</a>
+      <a href="#recruit">Recruitment</a>
+      <a href="#offshore">Offshore Development</a>
+      <a href="#india-market">India Market Entry</a>
+      <a href="#contact">Contact</a>
+      <a href="../index.html" class="lang-switch">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">🇮🇳 INDIA × JAPAN 🇯🇵</span>
+      <h1>Connecting Japan and India,<br><span class="accent">building bridges</span> is our work.</h1>
+      <p class="lead">Aaruya Woogway Solutions Pvt Ltd works across Japanese language education, recruitment, offshore development, and India market entry support to build a prosperous future for both Japan and India.</p>
+      <div class="hero-cta">
+        <a href="#overview" class="btn btn-primary">Company Overview</a>
+        <a href="#jp-edu" class="btn btn-ghost">Our Businesses</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section id="philosophy" class="philosophy section-tint">
+    <div class="wrap">
+      <div class="mini-flag"></div>
+      <span class="kicker orange" style="display:block;text-align:center;">OUR THOUGHTS</span>
+      <blockquote>We aim to be the bridge between <span class="em">Japan</span> and <span class="em2">India</span>,<br>contributing to a prosperous, mutually beneficial relationship.</blockquote>
+      <p class="sub">Through the three pillars of education, talent, and technology, we build bridges between Japan and India — creating partnerships of real value for businesses, people, and society on both sides.</p>
+    </div>
+  </section>
+
+  <!-- COMPANY OVERVIEW -->
+  <section id="overview">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">OVERVIEW</span>
+        <h2 class="section-title">Company Overview</h2>
+        <p class="section-desc">As the India-based group company of WooGWay Inc. (Japan, founded 2010), we run locally rooted operations on the ground in India.</p>
+      </div>
+
+      <div class="overview-grid">
+        <table class="info-table">
+          <tr>
+            <th>Company Name</th>
+            <td>Aaruya Woogway Solutions Pvt Ltd<br><span style="color:var(--ink-soft);font-size:13.5px;">(Formerly: MIRAI GLOBAL SOFTWARE PRIVATE LIMITED)</span></td>
+          </tr>
+          <tr>
+            <th>Registered Name</th>
+            <td>AARUYA WOOGWAY PRIVATE LIMITED</td>
+          </tr>
+          <tr>
+            <th>Founded</th>
+            <td>2013</td>
+          </tr>
+          <tr>
+            <th>Directors</th>
+            <td>Tomonori Sekiguchi<br>Abhijit Ghanekar<br>Priyanka Ghanekar</td>
+          </tr>
+          <tr>
+            <th>Group Headquarters</th>
+            <td>WooGWay Inc. (Japan, founded 2010)</td>
+          </tr>
+          <tr>
+            <th>Website</th>
+            <td><a href="https://aaruya-woogway-hp.vercel.app/" target="_blank" rel="noopener">aaruya-woogway-hp.vercel.app</a></td>
+          </tr>
+        </table>
+
+        <div class="ceo-card">
+          <img src="../assets/ceo-photo.jpg" alt="Tomonori Sekiguchi, President and CEO">
+          <div class="name">Tomonori Sekiguchi</div>
+          <div class="role">President and CEO</div>
+          <div class="bio">
+            <p>Joined Accenture in 2001, working on business transformation and IT implementation across a wide range of industries including telecom, high-tech, and media. Served as a bridge between Japan and overseas markets through international assignments.</p>
+            <p>Became President and CEO of WooGWay Inc. in 2010, establishing group companies in India and Nigeria.</p>
+            <p style="margin-top:22px;">B.A. in Economics, Seikei University. MBA, Goldey-Beacom College (USA).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUSINESS INTRO -->
+  <section class="section-tint-green" style="padding:70px 0;">
+    <div class="wrap section-head center">
+      <span class="kicker">BUSINESS</span>
+      <h2 class="section-title" style="margin-bottom:0;">Four businesses connecting Japan and India</h2>
+    </div>
+  </section>
+
+  <!-- 1. Japanese Language Education -->
+  <div class="biz-block" id="jp-edu">
+    <div class="wrap">
+      <div class="biz-grid">
+        <div class="biz-text">
+          <div class="biz-number" style="background:var(--saffron-deep);">01</div>
+          <h3>Japanese Language Education</h3>
+          <p>In partnership with universities across India, we provide Japanese language education to ambitious young Indians using a curriculum aligned with the JLPT (Japanese Language Proficiency Test). We support the entire journey — from education to recruitment and post-employment retention.</p>
+          <p>Our partner universities include nursing and IT institutions, allowing us to supply talent for a wide range of industries beyond IT.</p>
+          <div class="callout saffron"><b>Track Record</b>: In partnership with NISSO Co., Ltd. (listed on the Prime Market of the Tokyo Stock Exchange), we provide end-to-end services from Japanese language education to recruitment of Indian talent.</div>
+          <div class="stat-row">
+            <div class="stat"><div class="num">~900M</div><div class="label">India's population under age 35</div></div>
+            <div class="stat"><div class="num">~28 yrs</div><div class="label">India's median age</div></div>
+          </div>
+        </div>
+        <div class="biz-media">
+          <div class="media-grid">
+            <img class="span-2" src="../assets/jp-edu-hero.jpg" alt="Japanese language education seminar at an Indian university">
+            <img src="../assets/jp-edu-classroom.jpg" alt="Japanese language class in session">
+            <img src="../assets/jp-edu-lecture.jpg" alt="Lecture at a partner university in India">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Recruitment -->
+  <div class="biz-block section-tint" id="recruit">
+    <div class="wrap">
+      <div class="biz-grid reverse">
+        <div class="biz-media">
+          <div class="media-grid">
+            <img class="span-2" src="../assets/recruit-collage.jpg" alt="Recruitment seminar held in India">
+            <img class="span-2" src="../assets/itjobsjapan-mock.jpg" alt="IT Jobs Japan recruitment service">
+          </div>
+        </div>
+        <div class="biz-text">
+          <div class="biz-number" style="background:var(--green-deep);">02</div>
+          <h3>Recruitment</h3>
+          <p>Drawing on a database of over 10,000 Indian IT engineers, we introduce the right talent for your company primarily through our full-time recruitment service, IT Jobs Japan (IJJ). From hiring experienced engineers ready to contribute immediately, to developing new graduates from top universities, we offer flexible options to fit your needs.</p>
+          <div class="note-box">
+            <div class="dot"></div>
+            <p>Beyond IT talent, we also place candidates under the <b>"Specified Skilled Worker" visa category, including nursing professionals</b>. We connect people between Japan and India across a wide range of fields — IT, caregiving, healthcare, and more.</p>
+          </div>
+          <div class="tag-row">
+            <span class="tag green">Experienced Engineer Placement</span>
+            <span class="tag green">New Graduate Development Hiring</span>
+            <span class="tag green">Specified Skilled Workers (Nursing, etc.)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Offshore Development -->
+  <div class="biz-block" id="offshore">
+    <div class="wrap">
+      <div class="biz-grid">
+        <div class="biz-text">
+          <div class="biz-number" style="background:var(--navy);">03</div>
+          <h3>Offshore Development</h3>
+          <p>Leveraging our network of local entities in India, we offer offshore development — both dedicated lab-type teams and contract-based projects — backed by more than 10,000 Indian engineers. We cover everything from web and app development to cutting-edge technologies such as blockchain and AI.</p>
+          <p>For clients concerned about communicating in English, our bilingual "Bridge SEs" — well versed in Japanese business practices — join your team to manage progress and deadlines, giving you peace of mind.</p>
+          <div class="reason-list">
+            <div class="reason"><div class="rn">STRENGTH 01</div><p><strong>Deep talent pool</strong><br>A large, skilled workforce capable of handling cutting-edge technologies</p></div>
+            <div class="reason"><div class="rn">STRENGTH 02</div><p><strong>Cost performance</strong><br>Approx. ¥300,000–500,000/month (60–80% of domestic Japanese rates)</p></div>
+            <div class="reason"><div class="rn">STRENGTH 03</div><p><strong>Deadline management</strong><br>Japanese staff and Bridge SEs oversee project progress</p></div>
+            <div class="reason"><div class="rn">STRENGTH 04</div><p><strong>Communication support</strong><br>Japanese-speaking staff can also be introduced</p></div>
+          </div>
+        </div>
+        <div class="biz-media">
+          <div class="media-grid">
+            <img class="span-2" src="../assets/offshore-team-photo.jpg" alt="Remote development team connecting Japan and India">
+            <div class="team-card span-2">
+              <img src="../assets/bse-abhijit.jpg" alt="Abhijit Ghanekar">
+              <div>
+                <div class="tc-name">Abhijit Ghanekar</div>
+                <div class="tc-bio">A graduate of the University of Pune, Abhijit began his career as an IT engineer in India before joining NTT DATA in Japan, where he lived for five years. He now leads our Bridge SE team, drawing on his deep understanding of Japanese business practices to support Japanese companies.</div>
+              </div>
+            </div>
+            <div class="team-card span-2">
+              <img src="../assets/bse-shambhavi.jpg" alt="Shambhavi Dhawade">
+              <div>
+                <div class="tc-name">Shambhavi Dhawade</div>
+                <div class="tc-bio">A graduate of the University of Pune, Shambhavi has lived in Japan since 2019. She studied programming during her university years and now works as a bilingual Bridge SE.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. India Market Entry Support -->
+  <div class="biz-block section-tint-green" id="india-market">
+    <div class="wrap">
+      <div class="biz-grid reverse">
+        <div class="biz-media">
+          <div class="media-grid">
+            <img src="../assets/bcg-package.jpg" alt="Breast Care Glove package">
+            <img src="../assets/bcg-hand.jpg" alt="Breast Care Glove in use">
+            <img class="span-2" src="../assets/icst-seminar1.jpg" alt="Breast cancer awareness seminar in Delhi">
+          </div>
+        </div>
+        <div class="biz-text">
+          <div class="biz-number" style="background:var(--saffron-deep);">04</div>
+          <h3>India Market Entry Support</h3>
+          <p>We support Japanese companies entering the Indian market as their local partner. We are currently leading a marketing project in India for the "Breast Care Glove," a breast self-examination aid developed by Japan's ICST Corporation.</p>
+          <div class="callout"><b>Why This Matters to Us</b>: India ranks third in the world for breast cancer incidence (approximately 190,000 cases per year), yet has the highest number of deaths from the disease worldwide — approximately 98,000 per year (GLOBOCAN 2022). This disproportionately high mortality rate is largely attributed to delayed detection. Through this technology, which has over 15 years of use and roughly 1.7 million units sold in Japan, we hope to help more women achieve early detection and treatment. That is the belief driving this project.</div>
+          <div class="stat-row">
+            <div class="stat"><div class="num">#1 Worldwide</div><div class="label">Breast cancer deaths (approx. 98,000/year)</div></div>
+            <div class="stat"><div class="num">15+ Years</div><div class="label">Track record in Japan and international markets</div></div>
+            <div class="stat"><div class="num">~1.7 Million</div><div class="label">Cumulative units sold</div></div>
+          </div>
+          <p style="font-size:12px;color:var(--ink-soft);margin-top:10px;">Source: World Cancer Research Fund, "Breast cancer statistics" (based on GLOBOCAN 2022 data)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL MISSION -->
+  <section class="mission-final">
+    <div class="wrap">
+      <span class="kicker">MISSION</span>
+      <h2>To be the bridge that leads our clients to success,<br>we strive to be a true, wholehearted partner and professional.</h2>
+      <p>Japanese language education, recruitment, offshore development, and India market entry support — through these four businesses, we will continue delivering real value between Japan and India.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-meta" style="margin-top:0;font-size:14px;font-weight:700;color:var(--ink);">Aaruya Woogway Solutions Pvt Ltd<br><span style="font-weight:400;color:var(--ink-soft);font-size:13px;">(Formerly: MIRAI GLOBAL SOFTWARE PRIVATE LIMITED)</span></p>
+      </div>
+      <div class="footer-meta">
+        <div>Group Headquarters: WooGWay Inc. (Japan)</div>
+        <div>Web: <a href="https://woogway.com/" target="_blank" rel="noopener">WooGWay</a></div>
+        <div>Contact: <a href="mailto:contact@woogway.com">contact@woogway.com</a></div>
+        <div style="margin-top:10px;color:#9a9da5;">© WooGWay Group. All Rights Reserved.</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
